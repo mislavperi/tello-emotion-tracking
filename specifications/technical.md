@@ -10,4 +10,11 @@ Machine learning model and face detection will run on the host machine and send 
 
 ## Drone control - Mislav
 
+We would like to have the drone follow the face as it moves around the room
+
+The flow would be
+
+- aquire lock
+- follow target
+- attempt to seek target if lost
 
