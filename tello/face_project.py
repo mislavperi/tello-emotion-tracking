@@ -66,6 +66,7 @@ cv2.destroyAllWindows()
 # In[10]:
 
 from djitellopy import Tello
+import cv2
 
 tello = Tello()
 tello.connect()
@@ -79,18 +80,18 @@ face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_fronta
 while True:
     # Capture frame-by-frame
     img = tello.get_frame_read().frame
-    img = cv.resize(img, (360, 240))
+    img = cv2.resize(img, (1920, 1080))
 
 
     # Convert to grayscale for the face detection algorithm
-    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
     # Detect faces in the image
     faces = face_cascade.detectMultiScale(gray, scaleFactor=1.1, minNeighbors=5, minSize=(30, 30))
 
     # Draw rectangles around the faces
     for (x, y, w, h) in faces:
-        cv2.rectangle(frame, (x, y), (x + w, y + h), (255, 0, 0), 2)
+        cv2.rectangle(img, (x, y), (x + w, y + h), (255, 0, 0), 2)
 
     # Display the resulting frame
     cv2.imshow('Face Detection', img)
@@ -100,7 +101,6 @@ while True:
         break
 
 # Stop running the cell by clicking q on the keyboard
-cap.release()
 cv2.destroyAllWindows()
 
 
